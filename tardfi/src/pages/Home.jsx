@@ -1,7 +1,9 @@
-import { Chart, Drum, HeroIcon, Oil, TradeIcon } from "../assets";
+import { useNavigate } from "react-router-dom";
+import { Chart, Drum, HeroIcon, TradeIcon } from "../assets";
 import { features, plartformFeature } from "../components/Dummy";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="text-white w-full pt-[3rem]">
       <div className="layout">
@@ -19,7 +21,10 @@ const Home = () => {
               <button className="custom-gradient px-4 py-2 cursor-pointer rounded-2xl">
                 Connect Wallet
               </button>
-              <button className="border border-[#dadada] px-8 py-1.5 rounded-2xl">
+              <button
+                className="border border-[#dadada] px-8 py-1.5 rounded-2xl"
+                onClick={() => navigate("/market-place")}
+              >
                 Explore{" "}
               </button>
             </div>
