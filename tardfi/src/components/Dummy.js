@@ -1,4 +1,4 @@
-import { Chart, HeroIcon, Oil } from "../assets";
+import { Chart, HeroIcon } from "../assets";
 import { FaArrowRightArrowLeft, FaLock } from "react-icons/fa6";
 import { FaBrain } from "react-icons/fa";
 import { MdOutlineShield } from "react-icons/md";
@@ -13,7 +13,7 @@ export const features = [
     id: 2,
     title: "Brent crude oil",
     desc: "The global benchmark for crude oil",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ export const marketData = [
     location: "West Texas intermidiate",
     seller: "Global Energy Ltd.",
     quantity: "3000",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 2,
@@ -83,7 +83,7 @@ export const marketData = [
     location: "West Texas intermidiate",
     seller: "Global Energy Ltd.",
     quantity: "3000",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 5,
@@ -94,10 +94,10 @@ export const marketData = [
   },
   {
     id: 6,
-    location: "Nigeria Oil & gas",
+    location: "Nigeria HeroIcon & gas",
     seller: "Global Energy Ltd.",
     quantity: "3400",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 7,
@@ -118,7 +118,7 @@ export const marketData = [
     location: "OPEC basket",
     seller: "Global Energy Ltd.",
     quantity: "3000",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 10,
@@ -132,7 +132,7 @@ export const marketData = [
     location: "Dubai Crude",
     seller: "Global Energy Ltd.",
     quantity: "3000",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 12,
@@ -153,7 +153,7 @@ export const marketData = [
     location: "West Texas intermidiate",
     seller: "Global Energy Ltd.",
     quantity: "500",
-    icon: Oil,
+    icon: HeroIcon,
   },
   {
     id: 15,
@@ -167,6 +167,6 @@ export const marketData = [
     location: "West Texas intermidiate",
     seller: "Global Energy Ltd.",
     quantity: "1000",
-    icon: Oil,
+    icon: HeroIcon,
   },
 ];
