@@ -36,37 +36,61 @@ export default function TradingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-16">
+    <div className="min-h-screen bg-primary pt-16">
       <div className="layout py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Trading Dashboard</h1>
-          <p className="text-gray-400">Trade oil futures and derivatives with advanced tools</p>
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+            Trading <span className="text-gradient">Dashboard</span>
+          </h1>
+          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+            Trade oil futures and derivatives with advanced tools
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Trading Pairs */}
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <div className="card">
-              <h2 className="text-xl font-semibold text-white mb-4">Trading Pairs</h2>
-              <div className="space-y-3">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  Trading Pairs
+                </h2>
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--color-success)' }}></div>
+              </div>
+              <div className="space-y-2">
                 {tradingPairs.map((pair) => (
                   <div
                     key={pair.symbol}
-                    className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                    className={`p-4 rounded-xl cursor-pointer transition-all duration-200 border ${
                       selectedPair === pair.symbol
-                        ? 'bg-purple-600/20 border border-purple-500'
-                        : 'bg-gray-700 hover:bg-gray-600'
+                        ? 'border-primary/50 shadow-lg'
+                        : 'border-transparent hover:border-primary/30'
                     }`}
+                    style={{
+                      backgroundColor: selectedPair === pair.symbol
+                        ? 'var(--color-primary-light)'
+                        : 'var(--background-tertiary)'
+                    }}
                     onClick={() => setSelectedPair(pair.symbol)}
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <div className="font-semibold text-white">{pair.symbol}</div>
-                        <div className="text-sm text-gray-400">{pair.name}</div>
+                        <div className="font-semibold" style={{
+                          color: selectedPair === pair.symbol
+                            ? 'var(--color-primary)'
+                            : 'var(--text-primary)'
+                        }}>
+                          {pair.symbol}
+                        </div>
+                        <div className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                          {pair.name}
+                        </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-semibold text-white">${pair.price}</div>
-                        <div className={`text-sm ${pair.change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        <div className="font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          ${pair.price}
+                        </div>
+                        <div className={`text-sm font-medium ${pair.change >= 0 ? 'status-positive' : 'status-negative'}`}>
                           {pair.change >= 0 ? '+' : ''}{pair.change}%
                         </div>
                       </div>
@@ -78,82 +102,130 @@ export default function TradingPage() {
           </div>
 
           {/* Trading Form */}
-          <div className="lg:col-span-2">
+          <div className="xl:col-span-2">
             <div className="card">
-              <h2 className="text-xl font-semibold text-white mb-4">Place Order</h2>
-              
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  Place Order
+                </h2>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-success)' }}></div>
+                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>Live Market</span>
+                </div>
+              </div>
+
               {!wallet.isConnected && (
-                <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4 mb-6">
-                  <p className="text-yellow-400">Please connect your wallet to start trading</p>
+                <div className="p-4 mb-6 rounded-xl border"
+                     style={{
+                       backgroundColor: 'var(--color-warning-light)',
+                       borderColor: 'var(--color-warning)',
+                       color: 'var(--color-warning)'
+                     }}>
+                  <div className="flex items-center space-x-2">
+                    <span>⚠️</span>
+                    <p className="font-medium">Please connect your wallet to start trading</p>
+                  </div>
                 </div>
               )}
 
               <form onSubmit={handleSubmitOrder} className="space-y-6">
                 {/* Order Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium mb-3" style={{ color: 'var(--text-secondary)' }}>
                     Order Type
                   </label>
-                  <div className="flex space-x-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
                       onClick={() => setOrderType('market')}
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      className={`p-3 rounded-xl font-medium transition-all duration-200 border ${
                         orderType === 'market'
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? 'border-primary/50 shadow-lg'
+                          : 'border-transparent hover:border-primary/30'
                       }`}
+                      style={{
+                        backgroundColor: orderType === 'market'
+                          ? 'var(--color-primary-light)'
+                          : 'var(--background-tertiary)',
+                        color: orderType === 'market'
+                          ? 'var(--color-primary)'
+                          : 'var(--text-secondary)'
+                      }}
                     >
-                      Market
+                      Market Order
                     </button>
                     <button
                       type="button"
                       onClick={() => setOrderType('limit')}
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      className={`p-3 rounded-xl font-medium transition-all duration-200 border ${
                         orderType === 'limit'
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? 'border-primary/50 shadow-lg'
+                          : 'border-transparent hover:border-primary/30'
                       }`}
+                      style={{
+                        backgroundColor: orderType === 'limit'
+                          ? 'var(--color-primary-light)'
+                          : 'var(--background-tertiary)',
+                        color: orderType === 'limit'
+                          ? 'var(--color-primary)'
+                          : 'var(--text-secondary)'
+                      }}
                     >
-                      Limit
+                      Limit Order
                     </button>
                   </div>
                 </div>
 
                 {/* Buy/Sell */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Side
+                  <label className="block text-sm font-medium mb-3" style={{ color: 'var(--text-secondary)' }}>
+                    Order Side
                   </label>
-                  <div className="flex space-x-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
                       onClick={() => setSide('buy')}
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      className={`p-3 rounded-xl font-medium transition-all duration-200 border ${
                         side === 'buy'
-                          ? 'bg-green-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? 'border-success/50 shadow-lg'
+                          : 'border-transparent hover:border-success/30'
                       }`}
+                      style={{
+                        backgroundColor: side === 'buy'
+                          ? 'var(--color-success-light)'
+                          : 'var(--background-tertiary)',
+                        color: side === 'buy'
+                          ? 'var(--color-success)'
+                          : 'var(--text-secondary)'
+                      }}
                     >
-                      Buy
+                      🟢 Buy
                     </button>
                     <button
                       type="button"
                       onClick={() => setSide('sell')}
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      className={`p-3 rounded-xl font-medium transition-all duration-200 border ${
                         side === 'sell'
-                          ? 'bg-red-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? 'border-error/50 shadow-lg'
+                          : 'border-transparent hover:border-error/30'
                       }`}
+                      style={{
+                        backgroundColor: side === 'sell'
+                          ? 'var(--color-error-light)'
+                          : 'var(--background-tertiary)',
+                        color: side === 'sell'
+                          ? 'var(--color-error)'
+                          : 'var(--text-secondary)'
+                      }}
                     >
-                      Sell
+                      🔴 Sell
                     </button>
                   </div>
                 </div>
 
                 {/* Amount */}
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="amount" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                     Amount (Barrels)
                   </label>
                   <input
@@ -161,7 +233,7 @@ export default function TradingPage() {
                     id="amount"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="form-input"
                     placeholder="Enter amount"
                     required
                   />
@@ -170,7 +242,7 @@ export default function TradingPage() {
                 {/* Price (for limit orders) */}
                 {orderType === 'limit' && (
                   <div>
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="price" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                       Price (USD)
                     </label>
                     <input
@@ -178,7 +250,7 @@ export default function TradingPage() {
                       id="price"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
-                      className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="form-input"
                       placeholder="Enter price"
                       step="0.01"
                       required
@@ -190,20 +262,44 @@ export default function TradingPage() {
                 <button
                   type="submit"
                   disabled={!wallet.isConnected}
-                  className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
+                  className={`btn w-full py-4 text-lg font-semibold ${
                     wallet.isConnected
                       ? side === 'buy'
-                        ? 'bg-green-600 hover:bg-green-700 text-white'
-                        : 'bg-red-600 hover:bg-red-700 text-white'
-                      : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                        ? 'btn-success'
+                        : 'btn-error'
+                      : 'opacity-50 cursor-not-allowed'
                   }`}
+                  style={{
+                    backgroundColor: !wallet.isConnected
+                      ? 'var(--background-tertiary)'
+                      : undefined,
+                    color: !wallet.isConnected
+                      ? 'var(--text-muted)'
+                      : undefined
+                  }}
                 >
                   {wallet.isConnected
-                    ? `${side === 'buy' ? 'Buy' : 'Sell'} ${selectedPair}`
-                    : 'Connect Wallet to Trade'
+                    ? `${side === 'buy' ? '🟢 Buy' : '🔴 Sell'} ${selectedPair}`
+                    : '🔗 Connect Wallet to Trade'
                   }
                 </button>
               </form>
+            </div>
+          </div>
+
+          {/* Chart Placeholder */}
+          <div className="xl:col-span-1">
+            <div className="card h-full">
+              <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Price Chart
+              </h2>
+              <div className="h-64 rounded-xl flex items-center justify-center"
+                   style={{ backgroundColor: 'var(--background-tertiary)' }}>
+                <div className="text-center">
+                  <div className="text-4xl mb-2">📈</div>
+                  <p style={{ color: 'var(--text-muted)' }}>Chart coming soon</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -211,23 +307,47 @@ export default function TradingPage() {
         {/* Market Stats */}
         <div className="mt-8">
           <div className="card">
-            <h2 className="text-xl font-semibold text-white mb-4">Market Overview</h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
+                Market Overview
+              </h2>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--color-success)' }}></div>
+                <span className="text-sm" style={{ color: 'var(--text-muted)' }}>Live Data</span>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-400">$2.1M</div>
-                <div className="text-gray-400">24h Volume</div>
+              <div className="text-center p-4 rounded-xl" style={{ backgroundColor: 'var(--background-tertiary)' }}>
+                <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: 'var(--color-success-light)' }}>
+                  <span className="text-xl" style={{ color: 'var(--color-success)' }}>💰</span>
+                </div>
+                <div className="text-2xl font-bold text-gradient mb-1">$2.1M</div>
+                <div style={{ color: 'var(--text-muted)' }}>24h Volume</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">156</div>
-                <div className="text-gray-400">Active Orders</div>
+              <div className="text-center p-4 rounded-xl" style={{ backgroundColor: 'var(--background-tertiary)' }}>
+                <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: 'var(--color-primary-light)' }}>
+                  <span className="text-xl" style={{ color: 'var(--color-primary)' }}>📊</span>
+                </div>
+                <div className="text-2xl font-bold text-gradient mb-1">156</div>
+                <div style={{ color: 'var(--text-muted)' }}>Active Orders</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-purple-400">$78.45</div>
-                <div className="text-gray-400">WTI Price</div>
+              <div className="text-center p-4 rounded-xl" style={{ backgroundColor: 'var(--background-tertiary)' }}>
+                <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: 'var(--color-warning-light)' }}>
+                  <span className="text-xl" style={{ color: 'var(--color-warning)' }}>🛢️</span>
+                </div>
+                <div className="text-2xl font-bold text-gradient mb-1">$78.45</div>
+                <div style={{ color: 'var(--text-muted)' }}>WTI Price</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-400">+2.34%</div>
-                <div className="text-gray-400">24h Change</div>
+              <div className="text-center p-4 rounded-xl" style={{ backgroundColor: 'var(--background-tertiary)' }}>
+                <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: 'var(--color-success-light)' }}>
+                  <span className="text-xl" style={{ color: 'var(--color-success)' }}>📈</span>
+                </div>
+                <div className="text-2xl font-bold status-positive mb-1">+2.34%</div>
+                <div style={{ color: 'var(--text-muted)' }}>24h Change</div>
               </div>
             </div>
           </div>
