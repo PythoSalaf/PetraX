@@ -154,7 +154,7 @@ export class ICPService {
     return identity.getPrincipal();
   }
 
-  async createActor<T>(canisterId: string, idlFactory: any): Promise<T> {
+  async createActor<T>(canisterId: string, idlFactory: unknown): Promise<T> {
     if (!this.agent) {
       await this.initialize();
     }
@@ -165,7 +165,7 @@ export class ICPService {
     });
   }
 
-  async getBalance(accountId: string): Promise<number> {
+  async getBalance(): Promise<number> {
     try {
       // This would typically call the ledger canister
       // For now, return a mock balance
@@ -176,7 +176,7 @@ export class ICPService {
     }
   }
 
-  async transfer(to: string, amount: number): Promise<string> {
+  async transfer(): Promise<string> {
     try {
       // This would typically call the ledger canister for transfer
       // For now, return a mock transaction ID

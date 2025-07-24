@@ -43,7 +43,7 @@ export function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
 
       setDebounceTimer(newTimer);
     },
-    [callback, delay, ...deps]
+    [callback, delay, debounceTimer, ...deps]
   ) as T;
 
   useEffect(() => {
