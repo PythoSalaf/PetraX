@@ -7,9 +7,9 @@ export const API_CONFIG = {
 
 // ICP Network Configuration
 export const ICP_CONFIG = {
-  NETWORK: (process.env.NEXT_PUBLIC_ICP_NETWORK as 'local' | 'testnet' | 'mainnet') || 'local',
-  HOST: process.env.NEXT_PUBLIC_ICP_HOST || 'http://localhost:4943',
-  IDENTITY_PROVIDER: process.env.NEXT_PUBLIC_IDENTITY_PROVIDER || 'http://localhost:4943/?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai',
+  NETWORK: (process.env.NEXT_PUBLIC_ICP_NETWORK as 'local' | 'testnet' | 'mainnet') || 'mainnet',
+  HOST: process.env.NEXT_PUBLIC_ICP_HOST || 'https://ic0.app',
+  IDENTITY_PROVIDER: process.env.NEXT_PUBLIC_IDENTITY_PROVIDER || 'https://identity.ic0.app',
   CANISTER_IDS: {
     BACKEND: process.env.NEXT_PUBLIC_BACKEND_CANISTER_ID || 'rrkah-fqaaa-aaaaa-aaaaq-cai',
     LEDGER: process.env.NEXT_PUBLIC_LEDGER_CANISTER_ID || 'ryjl3-tyaaa-aaaaa-aaaba-cai',

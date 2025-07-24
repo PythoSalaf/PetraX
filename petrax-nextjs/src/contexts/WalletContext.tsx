@@ -167,7 +167,7 @@ export const WalletContextProvider: FC<WalletProviderProps> = ({
     if (!state.accountId) return null;
 
     try {
-      const balance = await icpService.getBalance(state.accountId);
+      const balance = await icpService.getBalance();
       dispatch({ type: 'SET_BALANCE', balance });
       return balance;
     } catch (error) {

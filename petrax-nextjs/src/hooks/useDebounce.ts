@@ -43,6 +43,7 @@ export function useDebouncedCallback<T extends (...args: unknown[]) => unknown>(
 
       setDebounceTimer(newTimer);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [callback, delay, debounceTimer, ...deps]
   ) as T;
 

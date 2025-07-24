@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features
-  experimental: {
-    // Enable server components
-    serverComponentsExternalPackages: ['@dfinity/agent', '@dfinity/auth-client'],
-  },
+  // Server external packages
+  serverExternalPackages: ['@dfinity/agent', '@dfinity/auth-client'],
   
   // Image optimization configuration
   images: {
