@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { WalletProvider } from '@/contexts';
@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   description: 'Revolutionize oil trading with AI & Web3 technology. Trade smarter, faster, and more securely on our decentralized marketplace.',
   keywords: 'oil trading, blockchain, Web3, ICP, cryptocurrency, trading platform',
   authors: [{ name: 'PetraX Team' }],
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
