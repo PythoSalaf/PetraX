@@ -6,32 +6,11 @@ import { usePathname } from 'next/navigation';
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { useWallet } from '@/contexts';
-import { truncateAddress } from '@/utils';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { wallet, connect, disconnect } = useWallet();
-
-  const handleWalletAction = async () => {
-    if (wallet.isConnected) {
-      await disconnect();
-    } else {
-      try {
-        await connect('internet-identity');
-      } catch (error) {
-        console.error('Failed to connect wallet:', error);
-      }
-    }
-  };
-
-  const getWalletButtonText = (): string => {
-    if (wallet.isConnecting) return 'Connecting...';
-    if (wallet.isConnected && wallet.accountId) {
-      return truncateAddress(wallet.accountId);
-    }
-    return 'Connect Wallet';
-  };
+  const { wallet } = useWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -42,7 +21,7 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { href: '/', label: 'Home' },
+    { href: '/home', label: 'Home' },
     { href: '/marketplace', label: 'Marketplace' },
     { href: '/trading', label: 'Trading' },
   ];
@@ -50,14 +29,14 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b shadow-sm" style={{ borderColor: 'var(--border-muted)' }}>
       <div className="layout">
-        <div className="flex items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+        <div className="flex items-center justify-between h-20">
+          {/* Left - Logo */}
+          <Link href="/home" className="flex items-center space-x-3 group">
             <div className="text-3xl font-bold text-gradient">PetraX</div>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center space-x-2 flex-1 justify-center">
+          {/* Center - Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -93,25 +72,15 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Right Side - Wallet Button & Mobile Menu */}
+          {/* Right - Wallet Status & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Wallet Connect Button */}
-            <button
-              onClick={handleWalletAction}
-              disabled={wallet.isConnecting}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg ${
-                wallet.isConnecting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-105'
-              }`}
-              style={{
-                backgroundColor: 'var(--color-primary)',
-                color: 'white'
-              }}
-            >
-              {wallet.isConnecting && (
-                <div className="loading-spinner mr-2"></div>
-              )}
-              {getWalletButtonText()}
-            </button>
+            {/* Wallet Status (Desktop) */}
+            <div className="hidden md:flex items-center space-x-2 px-4 py-2 rounded-lg" style={{ backgroundColor: 'var(--background-tertiary)' }}>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: wallet.isConnected ? 'var(--color-success)' : 'var(--color-error)' }}></div>
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                {wallet.isConnected ? 'Connected' : 'Disconnected'}
+              </span>
+            </div>
 
             {/* Mobile menu button */}
             <button
