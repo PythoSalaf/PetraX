@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { WalletProvider } from '@/contexts';
-import { Navbar, Footer } from '@/components';
+import { Sidebar, Footer } from '@/components';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -31,12 +31,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${plusJakartaSans.className} antialiased`}>
         <WalletProvider>
-          <div className="flex flex-col min-h-screen bg-primary">
-            <Navbar />
-            <main className="flex-1 pt-20">
-              {children}
-            </main>
-            <Footer />
+          <div className="flex min-h-screen bg-primary">
+            <Sidebar />
+            <div className="flex flex-col flex-1 md:ml-64">
+              <main className="flex-1 p-4 md:p-8">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </div>
         </WalletProvider>
       </body>

@@ -407,6 +407,15 @@ body {
     -webkit-backdrop-filter: blur(20px);
   }
 
+  /* Sidebar Styles */
+  .sidebar-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-transition {
+    transition: transform 0.3s ease-in-out;
+  }
+
   /* Utility Classes */
   .text-primary { color: var(--text-primary); }
   .text-secondary { color: var(--text-secondary); }

@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-primary">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
+      <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="layout relative z-10">
           <div className="text-center max-w-6xl mx-auto">
             {/* Logo */}
