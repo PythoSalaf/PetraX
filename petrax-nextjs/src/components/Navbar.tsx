@@ -42,12 +42,13 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
+    { href: '/', label: 'Home' },
     { href: '/marketplace', label: 'Marketplace' },
     { href: '/trading', label: 'Trading' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b shadow-sm" style={{ borderColor: 'var(--border-muted)' }}>
       <div className="layout">
         <div className="flex items-center h-20">
           {/* Logo */}

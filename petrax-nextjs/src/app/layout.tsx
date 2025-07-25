@@ -1,8 +1,18 @@
 import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Toaster } from 'sonner';
 import './globals.css';
-import { WalletProvider } from '@/contexts';
-import { Sidebar, Footer } from '@/components';
+import { WalletProvider, TanstackProvider } from '@/contexts';
+import {
+  Navbar,
+  Footer,
+  GlobalErrorHandler,
+  AdminKeyboardShortcut,
+  ErrorBoundary
+} from '@/components';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { siteConfig } from '@/config/site';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -11,10 +21,19 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'PetraX - Oil Trading Platform',
-  description: 'Trade oil commodities with blockchain technology on ICP. Connect your wallet and start trading oil using cryptocurrency on our secure decentralized platform.',
-  keywords: 'oil trading, blockchain, Web3, ICP, cryptocurrency, trading platform, oil commodities, petroleum trading',
-  authors: [{ name: 'PetraX Team' }],
+  title: {
+    template: `%s | ${siteConfig.name}`,
+    default: siteConfig.name,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: siteConfig.authors,
+  creator: siteConfig.creator,
+  metadataBase: siteConfig.metadataBase,
+  openGraph: siteConfig.openGraph,
+  twitter: siteConfig.twitter,
+  icons: siteConfig.icons,
+  manifest: siteConfig.manifest,
 };
 
 export const viewport: Viewport = {
@@ -30,17 +49,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakartaSans.className} antialiased`}>
-        <WalletProvider>
-          <div className="flex min-h-screen bg-primary">
-            <Sidebar />
-            <div className="flex flex-col flex-1 md:ml-64">
-              <main className="flex-1 p-4 md:p-8">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </div>
-        </WalletProvider>
+        <GlobalErrorHandler />
+        <TanstackProvider>
+          <WalletProvider>
+            <ErrorBoundary>
+              <div className="flex flex-col min-h-screen bg-primary">
+                <Navbar />
+                <main className="flex-1">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+            </ErrorBoundary>
+            <AdminKeyboardShortcut />
+            <Analytics />
+            <SpeedInsights />
+          </WalletProvider>
+        </TanstackProvider>
+        <Toaster richColors closeButton expand visibleToasts={4} />
       </body>
     </html>
   );
