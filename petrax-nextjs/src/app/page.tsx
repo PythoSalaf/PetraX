@@ -207,6 +207,7 @@ export default function HomePage() {
                   width={400}
                   height={300}
                   className="rounded-lg"
+                  unoptimized
                 />
               </div>
             </div>
