@@ -62,6 +62,10 @@ const config: Config = {
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'bounce-gentle': 'bounceGentle 0.6s ease-out',
+        'scale-in': 'scaleIn 0.2s ease-out',
+        'dropdown-open': 'dropdownOpen 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        'dropdown-close': 'dropdownClose 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
       },
       keyframes: {
         fadeIn: {
@@ -75,6 +79,39 @@ const config: Config = {
         slideDown: {
           '0%': { transform: 'translateY(-10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        bounceGentle: {
+          '0%': { transform: 'translateY(-4px)' },
+          '50%': { transform: 'translateY(-2px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.95)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        dropdownOpen: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-8px) scale(0.95)',
+            filter: 'blur(4px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0) scale(1)',
+            filter: 'blur(0px)'
+          },
+        },
+        dropdownClose: {
+          '0%': {
+            opacity: '1',
+            transform: 'translateY(0) scale(1)',
+            filter: 'blur(0px)'
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(-4px) scale(0.98)',
+            filter: 'blur(2px)'
+          },
         },
       },
       backgroundImage: {

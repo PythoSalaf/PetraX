@@ -4,7 +4,7 @@ import React, { useState, createContext, useContext } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconMenu2, IconX, IconHome, IconShoppingCart, IconTrendingUp, IconWallet } from '@tabler/icons-react';
+import { IconMenu2, IconX, IconWallet } from '@tabler/icons-react';
 import { useWallet } from '@/contexts';
 import { cn } from '@/lib/utils';
 
@@ -270,9 +270,4 @@ export const SidebarWalletButton = () => {
   );
 };
 
-// Navigation items
-export const navigationItems = [
-  { href: '/home', label: 'Home', icon: <IconHome className="h-5 w-5" /> },
-  { href: '/marketplace', label: 'Marketplace', icon: <IconShoppingCart className="h-5 w-5" /> },
-  { href: '/trading', label: 'Trading', icon: <IconTrendingUp className="h-5 w-5" /> },
-];
+

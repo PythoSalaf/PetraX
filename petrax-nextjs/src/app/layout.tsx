@@ -11,10 +11,9 @@ import {
   ErrorBoundary,
   Sidebar,
   SidebarBody,
-  SidebarLink,
-  SidebarWalletButton,
-  navigationItems
+  SidebarLink
 } from '@/components';
+import { IconHome, IconShoppingCart, IconTrendingUp } from '@tabler/icons-react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { siteConfig } from '@/config/site';
@@ -46,6 +45,13 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Navigation items
+const navigationItems = [
+  { href: '/home', label: 'Home', icon: IconHome },
+  { href: '/marketplace', label: 'Marketplace', icon: IconShoppingCart },
+  { href: '/trading', label: 'Trading', icon: IconTrendingUp },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,21 +68,21 @@ export default function RootLayout({
                 <Navbar />
                 <div className="flex flex-1">
                   <Sidebar>
-                    <SidebarBody className="justify-between gap-10">
+                    <SidebarBody className="justify-start gap-10">
                       <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                         <div className="mt-8 flex flex-col gap-2">
-                          {navigationItems.map((item) => (
-                            <SidebarLink
-                              key={item.href}
-                              href={item.href}
-                              label={item.label}
-                              icon={item.icon}
-                            />
-                          ))}
+                          {navigationItems.map((item) => {
+                            const IconComponent = item.icon;
+                            return (
+                              <SidebarLink
+                                key={item.href}
+                                href={item.href}
+                                label={item.label}
+                                icon={<IconComponent className="h-5 w-5" />}
+                              />
+                            );
+                          })}
                         </div>
-                      </div>
-                      <div>
-                        <SidebarWalletButton />
                       </div>
                     </SidebarBody>
                   </Sidebar>

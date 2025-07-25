@@ -1,15 +1,45 @@
 'use client';
 
 import React, { useState } from 'react';
-import { OilCard } from '@/components';
+import { OilCard, AnimatedDropdown } from '@/components';
 import { marketData } from '@/lib/data';
 import { useDebounce } from '@/hooks';
+import { IconDroplet, IconBarrel, IconGasStation, IconTrendingUp } from '@tabler/icons-react';
 
 export default function Marketplace() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  
+
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  // Dropdown options with icons
+  const oilTypeOptions = [
+    {
+      value: 'all',
+      label: 'All Types',
+      icon: <IconBarrel className="w-4 h-4 text-gray-600" />
+    },
+    {
+      value: 'brent',
+      label: 'Brent Crude',
+      icon: <IconDroplet className="w-4 h-4 text-blue-600" />
+    },
+    {
+      value: 'wti',
+      label: 'West Texas Intermediate',
+      icon: <IconGasStation className="w-4 h-4 text-orange-600" />
+    },
+    {
+      value: 'dubai',
+      label: 'Dubai Crude',
+      icon: <IconTrendingUp className="w-4 h-4 text-purple-600" />
+    },
+    {
+      value: 'opec',
+      label: 'OPEC Basket',
+      icon: <IconBarrel className="w-4 h-4 text-green-600" />
+    },
+  ];
 
   const filteredData = marketData.filter(item => {
     const matchesSearch = item.location.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
@@ -65,20 +95,14 @@ export default function Marketplace() {
 
               {/* Category Filter */}
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
-                  Oil Type
-                </label>
-                <select
+                <AnimatedDropdown
+                  options={oilTypeOptions}
                   value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="form-select"
-                >
-                  <option value="all">All Types</option>
-                  <option value="brent">Brent Crude</option>
-                  <option value="wti">West Texas Intermediate</option>
-                  <option value="dubai">Dubai Crude</option>
-                  <option value="opec">OPEC Basket</option>
-                </select>
+                  onChange={setSelectedCategory}
+                  label="Oil Type"
+                  placeholder="Select oil type..."
+                  className="min-w-[200px]"
+                />
               </div>
             </div>
           </div>
