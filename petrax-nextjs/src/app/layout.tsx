@@ -12,8 +12,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: 'PetraX - Oil Trading Platform',
-  description: 'Revolutionize oil trading with AI & Web3 technology. Trade smarter, faster, and more securely on our decentralized marketplace.',
-  keywords: 'oil trading, blockchain, Web3, ICP, cryptocurrency, trading platform',
+  description: 'Trade oil commodities with blockchain technology on ICP. Connect your wallet and start trading oil using cryptocurrency on our secure decentralized platform.',
+  keywords: 'oil trading, blockchain, Web3, ICP, cryptocurrency, trading platform, oil commodities, petroleum trading',
   authors: [{ name: 'PetraX Team' }],
 };
 

@@ -2,212 +2,246 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { HeroIcon, TradeIcon } from '../../public/assets';
 
 export default function HomePage() {
-
   return (
     <div className="min-h-screen bg-primary">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
         <div className="layout relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight" style={{ color: 'var(--text-primary)' }}>
-              The Future of{' '}
-              <span className="text-gradient">Oil Trading</span>
+          <div className="text-center max-w-6xl mx-auto">
+            {/* Logo */}
+            <div className="flex justify-center mb-8">
+              <div className="text-4xl font-bold text-gradient">PetraX</div>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight" style={{ color: 'var(--text-primary)' }}>
+              Trade{' '}
+              <span className="text-gradient">oil</span>{' '}
+              with{' '}
+              <span className="text-gradient">blockchain</span>{' '}
+              <span className="text-gradient">technology</span>{' '}
+              on ICP
             </h1>
-            <p className="text-xl md:text-2xl mb-12 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Professional oil trading platform powered by blockchain technology.
-              Trade with confidence, transparency, and security.
+
+            <p className="text-xl md:text-2xl mb-12 leading-relaxed max-w-4xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              Connect your wallet and start trading oil commodities using ICP blockchain technology.
+              Track your portfolio and trade with confidence on our secure platform.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <Link href="/marketplace" className="btn btn-primary btn-xl">
-                View Marketplace
+                Explore Marketplace
               </Link>
               <Link href="/trading" className="btn btn-outline btn-xl">
                 Start Trading
               </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Hero Image */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="relative">
-              <Image
-                src={HeroIcon}
-                alt="PetraX Oil Trading Platform"
-                width={800}
-                height={500}
-                className="rounded-3xl shadow-2xl w-full"
-                priority
-              />
-              {/* Floating Stats */}
-              <div className="absolute top-8 left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                <div className="text-2xl font-bold text-gradient">$2.5B+</div>
-                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Volume Traded</div>
+      {/* How It Works Section */}
+      <section className="py-24 bg-secondary">
+        <div className="layout">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+              How It Works
+            </h2>
+            <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Our platform makes oil trading accessible to everyone through a simple three-step process.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center text-2xl font-bold text-white"
+                   style={{ backgroundColor: 'var(--color-primary)' }}>
+                1
               </div>
-              <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                <div className="text-2xl font-bold text-gradient">50K+</div>
-                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Active Traders</div>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Browse Oil Markets
+              </h3>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                Explore our selection of available oil commodities
+              </p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--text-muted)' }}>
+                Browse through a curated selection of oil products from various global markets and refineries.
+              </p>
+              <Link href="/marketplace" className="btn btn-outline">
+                View Marketplace
+              </Link>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center text-2xl font-bold text-white"
+                   style={{ backgroundColor: 'var(--color-primary)' }}>
+                2
               </div>
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                <div className="text-2xl font-bold text-gradient">99.9%</div>
-                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Uptime</div>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Buy Oil Commodities
+              </h3>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                Purchase oil commodities using ICP or other cryptocurrencies
+              </p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--text-muted)' }}>
+                Choose from a wide range of oil products and pay with your preferred cryptocurrency. Transactions are secure and executed instantly on the blockchain.
+              </p>
+              <Link href="/marketplace" className="btn btn-outline">
+                View Marketplace
+              </Link>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center text-2xl font-bold text-white"
+                   style={{ backgroundColor: 'var(--color-primary)' }}>
+                3
               </div>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Sell & Cash Out
+              </h3>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
+                Sell your oil commodities and receive payment
+              </p>
+              <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--text-muted)' }}>
+                Sell your oil holdings anytime and receive funds in ICP or other cryptocurrencies. Withdrawals are processed within 24 hours.
+              </p>
+              <Link href="/trading" className="btn btn-outline">
+                Manage Portfolio
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-secondary">
+      {/* Why Choose Section */}
+      <section className="py-24 bg-primary">
         <div className="layout">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
               Why Choose PetraX?
             </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {/* Secure Platform */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Secure Platform
+              </h3>
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                All transactions are encrypted and protected by advanced security protocols.
+              </p>
+            </div>
+
+            {/* Easy Cash-outs */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Easy and Quick cash-outs
+              </h3>
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Go to your dashboard, select the oil commodities you want to sell, and choose your preferred withdrawal method. Funds will be transferred within 24 hours.
+              </p>
+            </div>
+
+            {/* Transparent Fees */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Transparent Fees
+              </h3>
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                There are no hidden fees or monthly charges.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Section */}
+      <section className="py-24 bg-secondary">
+        <div className="layout">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+              Cutting-Edge Technology
+            </h2>
             <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Professional-grade oil trading platform with enterprise security and cutting-edge technology
+              Built with innovative technologies for a seamless oil trading experience.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                   style={{ backgroundColor: 'var(--color-primary-light)' }}>
-                <div className="text-3xl" style={{ color: 'var(--color-primary)' }}>🔒</div>
-              </div>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-                Enterprise Security
-              </h3>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                Bank-grade security with blockchain transparency and multi-layer protection
+            {/* Oil Market Integration */}
+            <div className="text-center">
+              <h4 className="text-xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Global Oil Market Integration
+              </h4>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Real-time integration with global oil markets for current commodity pricing.
               </p>
             </div>
 
-            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                   style={{ backgroundColor: 'var(--color-success-light)' }}>
-                <div className="text-3xl" style={{ color: 'var(--color-success)' }}>📊</div>
-              </div>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-                Real-Time Analytics
-              </h3>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                Advanced market insights and AI-powered predictions for informed trading
+            {/* Blockchain Security */}
+            <div className="text-center">
+              <h4 className="text-xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                ICP Blockchain Security
+              </h4>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Leveraging Internet Computer Protocol blockchain technology to secure oil trading transactions.
               </p>
             </div>
 
-            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                   style={{ backgroundColor: 'var(--color-secondary-light)' }}>
-                <div className="text-3xl" style={{ color: 'var(--color-secondary)' }}>⚡</div>
-              </div>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-                Instant Execution
-              </h3>
-              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                Lightning-fast trade execution with minimal latency and maximum efficiency
+            {/* Crypto Payments */}
+            <div className="text-center">
+              <h4 className="text-xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Cryptocurrency Payments
+              </h4>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Seamless integration with ICP and other cryptocurrency payment methods for oil trading.
               </p>
             </div>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+            <div>
+              <h5 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                Fast Execution
+              </h5>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                Easily Accessible
+              </h5>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                Secure Platform
+              </h5>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                Smart Contracts
+              </h5>
+            </div>
+            <div>
+              <h5 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                Oil Trading
+              </h5>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-xl leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Trade oil commodities with cryptocurrency. Accessible oil trading for everyone.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Trading Platform Section */}
-      <section className="py-24 bg-primary">
-        <div className="layout">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="bg-white rounded-3xl p-2 shadow-2xl">
-                <Image
-                  src={TradeIcon}
-                  alt="Trading Interface"
-                  width={600}
-                  height={400}
-                  className="rounded-2xl w-full"
-                  unoptimized
-                />
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>
-                Professional Trading Platform
-              </h2>
-              <p className="text-xl mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Access institutional-grade trading tools with real-time market data,
-                advanced analytics, and seamless execution.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-sm text-white font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
-                      Real-Time Market Data
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)' }}>
-                      Live pricing and market movements updated every second
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-sm text-white font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
-                      Advanced Analytics
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)' }}>
-                      AI-powered insights and predictive market analysis
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-sm text-white font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
-                      Instant Execution
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)' }}>
-                      Lightning-fast order processing and settlement
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-secondary">
-        <div className="layout text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-            Ready to Start Trading?
-          </h2>
-          <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Join thousands of professional traders who trust PetraX for secure,
-            transparent, and efficient oil trading.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/marketplace" className="btn btn-primary btn-xl">
-              Explore Marketplace
-            </Link>
-            <Link href="/trading" className="btn btn-outline btn-xl">
-              Start Trading Now
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

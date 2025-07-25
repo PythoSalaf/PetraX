@@ -42,7 +42,6 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { href: '/', label: 'Home' },
     { href: '/marketplace', label: 'Marketplace' },
     { href: '/trading', label: 'Trading' },
   ];
@@ -50,16 +49,14 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <div className="layout">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="text-3xl font-bold text-gradient">PetraX</div>
-            <div className="w-3 h-3 rounded-full opacity-60 group-hover:opacity-100 transition-opacity"
-                 style={{ backgroundColor: 'var(--color-primary)' }}></div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center space-x-2 flex-1 justify-center">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -95,8 +92,9 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Wallet Button & Mobile Menu Button */}
+          {/* Right Side - Wallet Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            {/* Wallet Connect Button */}
             <button
               onClick={handleWalletAction}
               disabled={wallet.isConnecting}
