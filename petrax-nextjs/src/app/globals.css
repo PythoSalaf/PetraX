@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* Modern Dark Theme Color System */
-  --background-primary: #0f172a;
-  --background-secondary: #1e293b;
-  --background-tertiary: #334155;
-  --background-card: #1e293b;
-  --background-elevated: #334155;
+  /* Modern Green & White Theme Color System */
+  --background-primary: #ffffff;
+  --background-secondary: #f8fffe;
+  --background-tertiary: #f0fdf4;
+  --background-card: #ffffff;
+  --background-elevated: #f8fffe;
 
   /* Text Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
-  --text-inverse: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --text-inverse: #ffffff;
 
-  /* Accent Colors */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-  --color-primary-light: rgba(59, 130, 246, 0.1);
+  /* Green Accent Colors */
+  --color-primary: #059669;
+  --color-primary-hover: #047857;
+  --color-primary-light: rgba(5, 150, 105, 0.1);
 
   --color-success: #10b981;
   --color-success-hover: #059669;
   --color-success-light: rgba(16, 185, 129, 0.1);
+
+  --color-secondary: #22c55e;
+  --color-secondary-hover: #16a34a;
+  --color-secondary-light: rgba(34, 197, 94, 0.1);
 
   --color-warning: #f59e0b;
   --color-warning-hover: #d97706;
@@ -34,9 +38,9 @@
   --color-error-light: rgba(239, 68, 68, 0.1);
 
   /* Border Colors */
-  --border-primary: #475569;
-  --border-secondary: #64748b;
-  --border-muted: #334155;
+  --border-primary: #d1d5db;
+  --border-secondary: #9ca3af;
+  --border-muted: #e5e7eb;
 
   /* Shadow System */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -45,19 +49,20 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* Glass Morphism */
-  --glass-bg: rgba(30, 41, 59, 0.8);
-  --glass-border: rgba(71, 85, 105, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(209, 213, 219, 0.3);
 }
 
 body {
   color: var(--text-primary);
   background: var(--background-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
   line-height: 1.6;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 * {
@@ -164,9 +169,9 @@ body {
     }
   }
 
-  /* Modern Gradient Text */
+  /* Modern Green Gradient Text */
   .text-gradient {
-    background: linear-gradient(135deg, var(--color-primary), #60a5fa, #8b5cf6);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), #22d3ee);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -180,7 +185,7 @@ body {
   }
 
   .custom-gradient {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   }
 
   /* Enhanced Card Component */

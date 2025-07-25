@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { WalletProvider } from '@/contexts';
 import { Navbar, Footer } from '@/components';
 
-const inter = Inter({ subsets: ['latin'] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta-sans',
+});
 
 export const metadata: Metadata = {
   title: 'PetraX - Oil Trading Platform',
@@ -25,11 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${plusJakartaSans.className} antialiased`}>
         <WalletProvider>
           <div className="flex flex-col min-h-screen bg-primary">
             <Navbar />
-            <main className="flex-1 pt-16">
+            <main className="flex-1 pt-20">
               {children}
             </main>
             <Footer />

@@ -48,41 +48,45 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 nav-glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <div className="layout">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl font-bold text-gradient">PetraX</div>
-            <div className="w-2 h-2 rounded-full opacity-60 group-hover:opacity-100 transition-opacity"
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="text-3xl font-bold text-gradient">PetraX</div>
+            <div className="w-3 h-3 rounded-full opacity-60 group-hover:opacity-100 transition-opacity"
                  style={{ backgroundColor: 'var(--color-primary)' }}></div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
                   isActivePage(item.href)
-                    ? 'text-primary border border-primary/20'
-                    : 'text-secondary hover:text-primary hover:bg-tertiary/50'
+                    ? 'text-white shadow-lg'
+                    : 'text-gray-600 hover:text-white hover:shadow-md'
                 }`}
                 style={{
-                  color: isActivePage(item.href) ? 'var(--color-primary)' : 'var(--text-secondary)',
-                  backgroundColor: isActivePage(item.href) ? 'var(--color-primary-light)' : 'transparent'
+                  backgroundColor: isActivePage(item.href)
+                    ? 'var(--color-primary)'
+                    : 'transparent',
+                  color: isActivePage(item.href)
+                    ? 'white'
+                    : 'var(--text-secondary)'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActivePage(item.href)) {
-                    e.currentTarget.style.color = 'var(--color-primary)';
-                    e.currentTarget.style.backgroundColor = 'var(--background-tertiary)';
+                    e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                    e.currentTarget.style.color = 'white';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActivePage(item.href)) {
-                    e.currentTarget.style.color = 'var(--text-secondary)';
                     e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'var(--text-secondary)';
                   }
                 }}
               >
@@ -92,13 +96,17 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Wallet Button & Mobile Menu Button */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-4">
             <button
               onClick={handleWalletAction}
               disabled={wallet.isConnecting}
-              className={`btn btn-primary ${
-                wallet.isConnecting ? 'opacity-50 cursor-not-allowed' : ''
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg ${
+                wallet.isConnecting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-105'
               }`}
+              style={{
+                backgroundColor: 'var(--color-primary)',
+                color: 'white'
+              }}
             >
               {wallet.isConnecting && (
                 <div className="loading-spinner mr-2"></div>
@@ -109,15 +117,18 @@ const Navbar: React.FC = () => {
             {/* Mobile menu button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg transition-all duration-200 hover:bg-tertiary/50"
-              style={{ color: 'var(--text-secondary)' }}
+              className="md:hidden p-3 rounded-xl transition-all duration-200"
+              style={{
+                color: 'var(--text-secondary)',
+                backgroundColor: 'var(--background-tertiary)'
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = 'var(--color-primary)';
-                e.currentTarget.style.backgroundColor = 'var(--background-tertiary)';
+                e.currentTarget.style.backgroundColor = 'var(--color-primary-light)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.color = 'var(--text-secondary)';
-                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.backgroundColor = 'var(--background-tertiary)';
               }}
             >
               {isMenuOpen ? (
@@ -131,30 +142,36 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t" style={{ borderColor: 'var(--border-muted)' }}>
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden py-6 border-t bg-white/95 backdrop-blur-sm" style={{ borderColor: 'var(--border-muted)' }}>
+            <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
+                  className={`px-6 py-4 rounded-xl font-semibold transition-all duration-200 ${
                     isActivePage(item.href)
-                      ? 'border border-primary/20'
-                      : ''
+                      ? 'text-white shadow-lg'
+                      : 'text-gray-600'
                   }`}
                   style={{
-                    color: isActivePage(item.href) ? 'var(--color-primary)' : 'var(--text-secondary)',
-                    backgroundColor: isActivePage(item.href) ? 'var(--color-primary-light)' : 'transparent'
+                    backgroundColor: isActivePage(item.href)
+                      ? 'var(--color-primary)'
+                      : 'transparent',
+                    color: isActivePage(item.href)
+                      ? 'white'
+                      : 'var(--text-secondary)'
                   }}
                   onClick={() => setIsMenuOpen(false)}
                   onTouchStart={(e) => {
                     if (!isActivePage(item.href)) {
-                      e.currentTarget.style.backgroundColor = 'var(--background-tertiary)';
+                      e.currentTarget.style.backgroundColor = 'var(--color-primary)';
+                      e.currentTarget.style.color = 'white';
                     }
                   }}
                   onTouchEnd={(e) => {
                     if (!isActivePage(item.href)) {
                       e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'var(--text-secondary)';
                     }
                   }}
                 >

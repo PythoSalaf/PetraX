@@ -3,81 +3,57 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useWallet } from '@/contexts';
-import { HeroIcon, Chart, Drum, TradeIcon } from '../../public/assets';
+import { HeroIcon, TradeIcon } from '../../public/assets';
 
 export default function HomePage() {
-  const { wallet, connect } = useWallet();
-
-  const handleConnectWallet = async () => {
-    try {
-      await connect('internet-identity');
-    } catch (error) {
-      console.error('Failed to connect wallet:', error);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-primary">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-32 h-32 rounded-full"
-               style={{ backgroundColor: 'var(--color-primary)' }}></div>
-          <div className="absolute bottom-20 right-10 w-24 h-24 rounded-full"
-               style={{ backgroundColor: 'var(--color-warning)' }}></div>
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 rounded-full"
-               style={{ backgroundColor: 'var(--color-success)' }}></div>
-        </div>
-
-        <div className="layout py-20 lg:py-32 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Hero Content */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-                Welcome to{' '}
-                <span className="text-gradient">PetraX</span>
-              </h1>
-              <p className="text-xl mb-8 max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
-                Revolutionizing oil trading with AI-powered insights and Web3 technology.
-                Trade smarter, faster, and more securely on the decentralized marketplace.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/marketplace" className="btn btn-primary btn-lg">
-                  Explore Marketplace
-                </Link>
-                {!wallet.isConnected && (
-                  <button
-                    onClick={handleConnectWallet}
-                    disabled={wallet.isConnecting}
-                    className="btn btn-outline btn-lg"
-                  >
-                    {wallet.isConnecting && <div className="loading-spinner mr-2"></div>}
-                    {wallet.isConnecting ? 'Connecting...' : 'Connect Wallet'}
-                  </button>
-                )}
-              </div>
+      <section className="relative overflow-hidden py-20 lg:py-32">
+        <div className="layout relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight" style={{ color: 'var(--text-primary)' }}>
+              The Future of{' '}
+              <span className="text-gradient">Oil Trading</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-12 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Professional oil trading platform powered by blockchain technology.
+              Trade with confidence, transparency, and security.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <Link href="/marketplace" className="btn btn-primary btn-xl">
+                View Marketplace
+              </Link>
+              <Link href="/trading" className="btn btn-outline btn-xl">
+                Start Trading
+              </Link>
             </div>
+          </div>
 
-            {/* Hero Image */}
+          {/* Hero Image */}
+          <div className="relative max-w-4xl mx-auto">
             <div className="relative">
-              <div className="relative z-10">
-                <Image
-                  src={HeroIcon}
-                  alt="PetraX Oil Trading Platform"
-                  width={500}
-                  height={400}
-                  className="rounded-2xl shadow-2xl"
-                  priority
-                />
+              <Image
+                src={HeroIcon}
+                alt="PetraX Oil Trading Platform"
+                width={800}
+                height={500}
+                className="rounded-3xl shadow-2xl w-full"
+                priority
+              />
+              {/* Floating Stats */}
+              <div className="absolute top-8 left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <div className="text-2xl font-bold text-gradient">$2.5B+</div>
+                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Volume Traded</div>
               </div>
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 card-glass rounded-xl flex items-center justify-center">
-                <Image src={Chart} alt="Chart" width={40} height={40} />
+              <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <div className="text-2xl font-bold text-gradient">50K+</div>
+                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Active Traders</div>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 card-glass rounded-xl flex items-center justify-center">
-                <Image src={Drum} alt="Oil Drum" width={40} height={40} />
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <div className="text-2xl font-bold text-gradient">99.9%</div>
+                <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Uptime</div>
               </div>
             </div>
           </div>
@@ -85,130 +61,127 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary">
+      <section className="py-24 bg-secondary">
         <div className="layout">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
               Why Choose PetraX?
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Experience the future of oil trading with our cutting-edge platform
+            <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Professional-grade oil trading platform with enterprise security and cutting-edge technology
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
                    style={{ backgroundColor: 'var(--color-primary-light)' }}>
-                <div className="text-2xl" style={{ color: 'var(--color-primary)' }}>🔗</div>
+                <div className="text-3xl" style={{ color: 'var(--color-primary)' }}>🔒</div>
               </div>
-              <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                Blockchain Security
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Enterprise Security
               </h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Built on Internet Computer Protocol for maximum security and transparency
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                Bank-grade security with blockchain transparency and multi-layer protection
               </p>
             </div>
 
-            <div className="card text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
+            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
                    style={{ backgroundColor: 'var(--color-success-light)' }}>
-                <div className="text-2xl" style={{ color: 'var(--color-success)' }}>🤖</div>
+                <div className="text-3xl" style={{ color: 'var(--color-success)' }}>📊</div>
               </div>
-              <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                AI-Powered Insights
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Real-Time Analytics
               </h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Advanced analytics and market predictions to optimize your trading decisions
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                Advanced market insights and AI-powered predictions for informed trading
               </p>
             </div>
 
-            <div className="card text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
-                   style={{ backgroundColor: 'var(--color-warning-light)' }}>
-                <div className="text-2xl" style={{ color: 'var(--color-warning)' }}>⚡</div>
+            <div className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
+                   style={{ backgroundColor: 'var(--color-secondary-light)' }}>
+                <div className="text-3xl" style={{ color: 'var(--color-secondary)' }}>⚡</div>
               </div>
-              <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                Lightning Fast
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+                Instant Execution
               </h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Execute trades in milliseconds with our optimized trading engine
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                Lightning-fast trade execution with minimal latency and maximum efficiency
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-primary">
+      {/* Trading Platform Section */}
+      <section className="py-24 bg-primary">
         <div className="layout">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="group">
-              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">$2.5B+</div>
-              <div style={{ color: 'var(--text-muted)' }}>Total Volume Traded</div>
-            </div>
-            <div className="group">
-              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">50K+</div>
-              <div style={{ color: 'var(--text-muted)' }}>Active Traders</div>
-            </div>
-            <div className="group">
-              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">99.9%</div>
-              <div style={{ color: 'var(--text-muted)' }}>Uptime</div>
-            </div>
-            <div className="group">
-              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
-              <div style={{ color: 'var(--text-muted)' }}>Support</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trading Preview Section */}
-      <section className="py-20 bg-secondary">
-        <div className="layout">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-                Advanced Trading Tools
-              </h2>
-              <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
-                Access professional-grade trading tools with real-time market data,
-                advanced charting, and AI-powered analytics to make informed decisions.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span style={{ color: 'var(--text-secondary)' }}>Real-time market data</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span style={{ color: 'var(--text-secondary)' }}>Advanced charting tools</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center"
-                       style={{ backgroundColor: 'var(--color-success)' }}>
-                    <span className="text-xs text-white">✓</span>
-                  </div>
-                  <span style={{ color: 'var(--text-secondary)' }}>AI-powered insights</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="card-glass p-6 rounded-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="bg-white rounded-3xl p-2 shadow-2xl">
                 <Image
                   src={TradeIcon}
                   alt="Trading Interface"
-                  width={400}
-                  height={300}
-                  className="rounded-lg"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl w-full"
                   unoptimized
                 />
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>
+                Professional Trading Platform
+              </h2>
+              <p className="text-xl mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Access institutional-grade trading tools with real-time market data,
+                advanced analytics, and seamless execution.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                       style={{ backgroundColor: 'var(--color-success)' }}>
+                    <span className="text-sm text-white font-bold">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+                      Real-Time Market Data
+                    </h4>
+                    <p style={{ color: 'var(--text-muted)' }}>
+                      Live pricing and market movements updated every second
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                       style={{ backgroundColor: 'var(--color-success)' }}>
+                    <span className="text-sm text-white font-bold">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+                      Advanced Analytics
+                    </h4>
+                    <p style={{ color: 'var(--text-muted)' }}>
+                      AI-powered insights and predictive market analysis
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                       style={{ backgroundColor: 'var(--color-success)' }}>
+                    <span className="text-sm text-white font-bold">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+                      Instant Execution
+                    </h4>
+                    <p style={{ color: 'var(--text-muted)' }}>
+                      Lightning-fast order processing and settlement
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -216,20 +189,21 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-tertiary">
+      <section className="py-24 bg-secondary">
         <div className="layout text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
             Ready to Start Trading?
           </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Join thousands of traders who trust PetraX for their oil trading needs
+          <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            Join thousands of professional traders who trust PetraX for secure,
+            transparent, and efficient oil trading.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/marketplace" className="btn btn-primary btn-lg">
-              Start Trading Now
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link href="/marketplace" className="btn btn-primary btn-xl">
+              Explore Marketplace
             </Link>
-            <Link href="/trading" className="btn btn-secondary btn-lg">
-              View Trading Dashboard
+            <Link href="/trading" className="btn btn-outline btn-xl">
+              Start Trading Now
             </Link>
           </div>
         </div>
