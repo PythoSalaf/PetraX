@@ -8,7 +8,12 @@ import {
   Footer,
   GlobalErrorHandler,
   AdminKeyboardShortcut,
-  ErrorBoundary
+  ErrorBoundary,
+  Sidebar,
+  SidebarBody,
+  SidebarLink,
+  SidebarWalletButton,
+  navigationItems
 } from '@/components';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -55,9 +60,30 @@ export default function RootLayout({
             <ErrorBoundary>
               <div className="flex flex-col min-h-screen bg-primary">
                 <Navbar />
-                <main className="flex-1">
-                  {children}
-                </main>
+                <div className="flex flex-1">
+                  <Sidebar>
+                    <SidebarBody className="justify-between gap-10">
+                      <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+                        <div className="mt-8 flex flex-col gap-2">
+                          {navigationItems.map((item) => (
+                            <SidebarLink
+                              key={item.href}
+                              href={item.href}
+                              label={item.label}
+                              icon={item.icon}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <SidebarWalletButton />
+                      </div>
+                    </SidebarBody>
+                  </Sidebar>
+                  <main className="flex-1 md:ml-[60px] transition-all duration-300">
+                    {children}
+                  </main>
+                </div>
                 <Footer />
               </div>
             </ErrorBoundary>
